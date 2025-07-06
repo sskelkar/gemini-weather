@@ -4,7 +4,7 @@ import { getRecommendation } from '../domain/recommendationEngine';
 
 function WeatherCard({ city, weather }) {
   return (
-    <div className="col-lg-3 col-md-6 mb-4">
+    <div className="col-lg-6 col-md-6 mb-4">
       <div className="card shadow-sm h-100">
         <div className="card-body text-center">
           <h2 className="card-title h4 mb-3">{city.name}</h2>
