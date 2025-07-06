@@ -1,12 +1,23 @@
-# React + Vite
+# Gemini Weather Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a small web application that displays current weather conditions for multiple cities side-by-side. It provides temperature, wind speed, weather condition, chance of rain, and a witty recommendation based on the weather.
 
-Currently, two official plugins are available:
+## Underlying Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*   **Frontend:** React (JavaScript)
+*   **Build Tool:** Vite
+*   **Styling:** Bootstrap
+*   **Weather Data API:** Open-Meteo (free, public API)
 
-## Expanding the ESLint configuration
+## How it was Created
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This application was built interactively with the help of a Gemini-powered CLI agent. The development process involved:
+
+1.  **Project Setup:** Initializing a new React project with Vite and integrating Bootstrap for UI.
+2.  **Feature Development:** Implementing weather data fetching from the Open-Meteo API, displaying key weather metrics, and adding a city selection dropdown.
+3.  **UI/UX Enhancements:** Beautifying the user interface with Bootstrap cards, prominent temperature display, and weather icons. The browser tab title and favicon were also customized.
+4.  **Refactoring:** Restructuring the codebase using a Domain-Driven Design (DDD) approach to improve maintainability and organization. This involved creating separate modules for constants, city data, weather service logic, and recommendation engine, as well as a dedicated `WeatherCard` component.
+5.  **Witty Recommendations:** Adding a logic to provide humorous and relevant recommendations based on the current weather conditions for each city.
+6.  **Deployment:** Pushing the project to a GitHub repository.
+
+This project demonstrates a step-by-step development process guided by an AI assistant, showcasing rapid prototyping and iterative development.
