@@ -2,6 +2,49 @@
 
 This is a small web application that displays current weather conditions for multiple cities side-by-side. It provides temperature, wind speed, weather condition, chance of rain, and a witty recommendation based on the weather.
 
+## Getting Started
+
+Follow these steps to get the Gemini Weather Dashboard up and running on your local machine.
+
+### Prerequisites
+
+Make sure you have Node.js and npm (Node Package Manager) installed on your system.
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/sskelkar/gemini-weather.git
+    ```
+2.  **Navigate to the project directory:**
+    ```bash
+    cd gemini-weather
+    ```
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+### Running the Application
+
+To start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be accessible in your web browser at `http://localhost:5173`.
+
+### Building for Production
+
+To create a production-ready build:
+
+```bash
+npm run build
+```
+
+This will generate optimized static assets in the `dist` directory.
+
 ## Underlying Tech Stack
 
 *   **Frontend:** React (JavaScript)
