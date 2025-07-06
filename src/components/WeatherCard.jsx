@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { weatherCodeMapping, weatherIconMapping } from '../domain/constants';
 import { getRecommendation } from '../domain/recommendationEngine';
 
-function WeatherCard({ city, weather }) {
+function WeatherCard({ city, weather, onCardClick }) {
   const [recommendation, setRecommendation] = useState('');
   const [recLoading, setRecLoading] = useState(false);
 
@@ -19,8 +19,8 @@ function WeatherCard({ city, weather }) {
   }, [weather]);
 
   return (
-    <div className="col-lg-6 col-md-6 mb-4">
-      <div className="card shadow-sm h-100">
+    <div className="col-lg-6 col-md-6 mb-4" onClick={() => onCardClick(city)} style={{ cursor: 'pointer' }}>
+      <div className="card shadow-sm h-100 transition-shadow-hover" style={{ transition: 'box-shadow 0.3s ease-in-out' }}>
         <div className="card-body text-center">
           <h2 className="card-title h4 mb-3">{city.name}</h2>
           {weather ? (

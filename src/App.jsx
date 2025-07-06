@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { cities } from './domain/cities';
 import { fetchWeatherForCity } from './domain/weatherService';
 import WeatherCard from './components/WeatherCard';
+import SevenDayForecast from './components/SevenDayForecast'; // Import the new component
 
 function App() {
   const [allCityWeather, setAllCityWeather] = useState({});
   const [loading, setLoading] = useState(true);
+  const [selectedCityDetail, setSelectedCityDetail] = useState(null); // State to hold the city for detailed view
 
   useEffect(() => {
     const fetchAllWeather = async () => {
@@ -31,6 +33,20 @@ function App() {
     fetchAllWeather();
   }, []);
 
+  const handleCardClick = (cityData) => {
+    setSelectedCityDetail(cityData);
+  };
+
+  const handleBackClick = () => {
+    setSelectedCityDetail(null);
+  };
+
+  if (selectedCityDetail) {
+    return (
+      <SevenDayForecast city={selectedCityDetail} onBackClick={handleBackClick} />
+    );
+  }
+
   return (
     <div className="container d-flex flex-column justify-content-center min-vh-100">
       {loading ? (
@@ -38,7 +54,7 @@ function App() {
       ) : (
         <div className="row">
           {cities.map((city) => (
-            <WeatherCard key={city.name} city={city} weather={allCityWeather[city.name]} />
+            <WeatherCard key={city.name} city={city} weather={allCityWeather[city.name]} onCardClick={handleCardClick} />
           ))}
         </div>
       )}
