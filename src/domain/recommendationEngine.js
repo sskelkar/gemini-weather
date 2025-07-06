@@ -1,27 +1,38 @@
-export const getRecommendation = (weather) => {
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
+export const getRecommendation = async (weather) => {
   if (!weather) return "";
 
   const { temperature, precipitation_probability, weathercode, windspeed } = weather;
 
-  if (precipitation_probability > 50) {
-    return "Don't forget your umbrella! Unless you enjoy being soggy.";
-  }
+  const weatherDescription = `Temperature: ${temperature}°C, Wind Speed: ${windspeed} km/h, Condition: ${weathercode}, Chance of Rain: ${precipitation_probability}%`;
 
-  if (temperature < 10) {
-    return "Time to bundle up! It's sweater weather.";
-  }
+  const prompt = `Given the following weather conditions: ${weatherDescription}. Provide a witty and relevant recommendation under 15 words.`;
 
-  if (temperature > 25) {
-    return "Stay cool and hydrated! It's a scorcher out there.";
-  }
+  try {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+        }),
+      }
+    );
 
-  if (windspeed > 20) {
-    return "Hold onto your hats! It's a bit breezy.";
-  }
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Gemini API error: ", errorData);
+      return "Could not fetch recommendation.";
+    }
 
-  if (weathercode === 0) {
-    return "Enjoy the sunshine! But don't forget your sunblock, you glow-worm.";
+    const data = await response.json();
+    return data.candidates[0].content.parts[0].text;
+  } catch (error) {
+    console.error("Error calling Gemini API: ", error);
+    return "Failed to get recommendation.";
   }
-
-  return "Perfect weather for... whatever you like!";
 };
